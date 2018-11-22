@@ -889,6 +889,9 @@ static void toplevel() {
   // Function
   if (consume('(')) {
     Vector *params = new_vec();
+
+    lvars = new_vec();
+
     while (!consume(')')) {
       if (params->len > 0)
         expect(',');
@@ -898,7 +901,6 @@ static void toplevel() {
     Token *t = tokens->data[pos];
     Node *node = new_node(ND_DECL, t);
 
-    lvars = new_vec();
     breaks = new_vec();
     continues = new_vec();
     switches = new_vec();
